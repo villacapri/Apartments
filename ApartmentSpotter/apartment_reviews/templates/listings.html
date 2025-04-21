@@ -25,28 +25,21 @@
                         </div>
                         
                         <div class="input-field">
-                            <select id="state" name="state">
-                                <option value="" {% if not request.args.get('state') %}selected{% endif %}>Any State</option>
-                                {% for state_code, state_name in [
-                                    ('AL', 'Alabama'), ('AK', 'Alaska'), ('AZ', 'Arizona'), ('AR', 'Arkansas'),
-                                    ('CA', 'California'), ('CO', 'Colorado'), ('CT', 'Connecticut'), ('DE', 'Delaware'),
-                                    ('FL', 'Florida'), ('GA', 'Georgia'), ('HI', 'Hawaii'), ('ID', 'Idaho'),
-                                    ('IL', 'Illinois'), ('IN', 'Indiana'), ('IA', 'Iowa'), ('KS', 'Kansas'),
-                                    ('KY', 'Kentucky'), ('LA', 'Louisiana'), ('ME', 'Maine'), ('MD', 'Maryland'),
-                                    ('MA', 'Massachusetts'), ('MI', 'Michigan'), ('MN', 'Minnesota'), ('MS', 'Mississippi'),
-                                    ('MO', 'Missouri'), ('MT', 'Montana'), ('NE', 'Nebraska'), ('NV', 'Nevada'),
-                                    ('NH', 'New Hampshire'), ('NJ', 'New Jersey'), ('NM', 'New Mexico'), ('NY', 'New York'),
-                                    ('NC', 'North Carolina'), ('ND', 'North Dakota'), ('OH', 'Ohio'), ('OK', 'Oklahoma'),
-                                    ('OR', 'Oregon'), ('PA', 'Pennsylvania'), ('RI', 'Rhode Island'), ('SC', 'South Carolina'),
-                                    ('SD', 'South Dakota'), ('TN', 'Tennessee'), ('TX', 'Texas'), ('UT', 'Utah'),
-                                    ('VT', 'Vermont'), ('VA', 'Virginia'), ('WA', 'Washington'), ('WV', 'West Virginia'),
-                                    ('WI', 'Wisconsin'), ('WY', 'Wyoming')
-                                ] %}
-                                    <option value="{{ state_code }}" {% if request.args.get('state') == state_code %}selected{% endif %}>{{ state_name }}</option>
-                                {% endfor %}
-                            </select>
-                            <label>State</label>
-                        </div>
+                            <select id="region" name="region">
+                            <option value="" {% if not request.args.get('region') %}selected{% endif %}>Any Region</option>
+                {% for region_code, region_name in [
+                ('POS', 'Port of Spain'), ('SJU', 'San Juan'), ('TUN', 'Tunapuna'),
+                ('ARI', 'Arima'), ('CHA', 'Chaguanas'), ('SFO', 'San Fernando'),
+                ('PFO', 'Point Fortin'), ('SGE', 'Sangre Grande'), ('SIP', 'Siparia'),
+                ('PRI', 'Princes Town'), ('MAY', 'Mayaro'), ('RCL', 'Rio Claro'),
+                ('DMR', 'Diego Martin'), ('SJL', 'San Juan/Laventille'), ('TUR', 'Tunapuna/Piarco'),
+                ('COV', 'Couva/Tabaquite/Talparo'), ('PED', 'Penal/Debe'), ('TOB', 'Tobago')
+            ] %}
+            <option value="{{ region_code }}" {% if request.args.get('region') == region_code %}selected{% endif %}>{{ region_name }}</option>
+        {% endfor %}
+    </select>
+    <label for="region">Region</label>
+</div>
                         
                         <div class="row">
                             <div class="input-field col s6">
