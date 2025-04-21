@@ -21,10 +21,11 @@ login_manager = LoginManager()
 
 # Create the Flask application
 app = Flask(__name__)
-app.secret_key = os.environ.get("SESSION_SECRET")
+
+# Set secret key - fixing this line for CSRF protection
+app.config['SECRET_KEY'] = os.environ.get("SESSION_SECRET", "dev-secret-key-replace-in-production")
+
 app.wsgi_app = ProxyFix(app.wsgi_app, x_proto=1, x_host=1)
-
-
 app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("SQLALCHEMY_DATABASE_URI", "sqlite:///app.db")
 app.config["SQLALCHEMY_ENGINE_OPTIONS"] = {
     "pool_recycle": 300,
