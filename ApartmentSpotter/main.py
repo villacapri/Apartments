@@ -1,7 +1,7 @@
-import os
-from apartment_reviews.app import app
+from flask import Flask
 
-# Set a default session secret if not provided in environment
+app = Flask(__name__, template_folder='apartment_reviews/templates')
+
 if not os.environ.get("SESSION_SECRET"):
     os.environ["SESSION_SECRET"] = "apartment-reviews-secret-key"
 
