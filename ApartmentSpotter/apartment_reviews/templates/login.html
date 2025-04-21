@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}Login - Apartment Reviews{% endblock %}
+
+{% block content %}
+<div style="max-width: 500px; margin: 40px auto; padding: 20px;">
+    <div class="card">
+        <div class="card-header">
+            <h2 class="card-title text-center">Login</h2>
+        </div>
+        <div class="card-body">
+            <form method="POST" action="{{ url_for('login') }}">
+                {{ form.hidden_tag() }}
+                
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    {{ form.email(id="email", placeholder="Enter your email") }}
+                    {% if form.email.errors %}
+                        <div style="color: #dc3545; font-size: 0.875rem; margin-top: 5px;">
+                            {% for error in form.email.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    {{ form.password(id="password", placeholder="Enter your password") }}
+                    {% if form.password.errors %}
+                        <div style="color: #dc3545; font-size: 0.875rem; margin-top: 5px;">
+                            {% for error in form.password.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+                
+                <div class="form-group">
+                    <label style="display: flex; align-items: center; font-weight: normal;">
+                        {{ form.remember(type="checkbox", id="remember", style="width: auto; margin-right: 10px;") }}
+                        {{ form.remember.label.text }}
+                    </label>
+                </div>
+                
+                <div style="text-align: center; margin-top: 25px;">
+                    {{ form.submit(class="") }}
+                </div>
+            </form>
+        </div>
+        <div style="padding: 15px; text-align: center; background-color: #f8f9fa; border-top: 1px solid #eee;">
+            <p>Don't have an account? <a href="{{ url_for('register') }}" style="color: #1e88e5; text-decoration: none; font-weight: bold;">Register here</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}
